@@ -1,10 +1,8 @@
 <?php
-echo 'Welcome the world of Docker !';
-$str = 'post' + var_export($_POST, true); 
-$str += 'file_get_contents' +  file_get_contents('php://input');
-$str += var_export($_SERVER, true);
-echo $str
-file_put_contents('/data/1.txt', $str);
+$filename = '/tmp/1.txt';
+file_put_contents($filename, print_r($_POST, TRUE), FILE_APPEND);
+file_put_contents($filename, print_r($_SERVER, TRUE), FILE_APPEND);
+file_put_contents($filename, file_get_contents('php://input'), FILE_APPEND);
+echo file_get_contents('/tmp/1.txt');
 
-echo file_get_contents('/data/1.txt');
 ?>
